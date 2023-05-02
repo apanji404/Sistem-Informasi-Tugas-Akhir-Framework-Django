@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Skripsipedia</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- Include CSS files -->
+   {% include 'dosen/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+   <style>
+      .pagination {
+         display: flex;
+         justify-content: center;
+      }
+
+      .pagination .active>span {
+         background-color: #000000;
+         color: black;
+      }
+
+      .pagination button {
+         padding: 0.5em 1em;
+         margin: 0 0.25em;
+      }
+   </style>
+   {% endblock stylesheets %}
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+{% include 'dosen/includes/navigation.html' %}
+
+{% block content %}
+
+<!-- dashboard inner -->
+
+<!-- row -->
+<div class="row column1">
+   <div class="col-md-12">
+      <div class="white_shd full margin_bottom_30">
+         <div class="full graph_head">
+            <div class="heading1 margin_0">
+               <h2>Daftar Mahasiswa</h2>
+            </div>
+         </div>
+         {% include 'message.html' %}
+         <div class="full price_table padding_infor_info">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="table-responsive-sm">
+                     <table class="table table-striped projects">
+                        <thead class="thead-dark">
+                           <tr>
+                              <th style="width: 2%">No</th>
+                              <th style="width: 30%">Judul TA</th>
+                              <th>Mahasiswa</th>
+                              <th>Lihat Profil</th>
+                              <th>Aksi</th>
+                           </tr>
+                        </thead>
+                        {% for order in data1 %}
+                        <tr>
+                           <td>{{ forloop.counter }}</td>
+                           <td>
+                              <a>{{order.proposal}}</a>
+                           </td>
+                           <td>
+                              <a>{{order.user.profil_mahasiswa.nama}}</a>
+                           </td>
+                           <td>
+                              <a class="detail" href="{% url 'lihatProfil' order.user.id %}">
+                                 <button type="button" class="btn btn-success btn-xs">Lihat Profil</button>
+                              </a>
+                           </td>
+
+                           <td>
+                              {% if order.status %}
+                              <a>Permintaan Diterima</a>
+                              {% else %}
+                              <form method="POST">
+                                 {% csrf_token %}
+                                 {% if order.sisa_kuota > 0 %}
+                                    <a href="{% url 'updateStatus' order.id %}">
+                                    <button type="button" class="btn btn-success">Terima</button>
+                                    </a>
+                                 {% else %}
+                                    <button type="button" class="btn btn-success" disabled>Kuota Penuh</button>
+                                 {% endif %}
+                                 <a href="{% url 'tolakMahasiswa' order.id %}">
+                                    <button type="button" class="btn btn-danger btn-xs">Tolak</button>
+                                 </a>
+                              </form>
+                              {% endif %}
+                           </td>
+                        </tr>
+                        {% endfor %}
+
+                        </tbody>
+                     </table>
+
+                     <ul class="pagination">
+                        {% if data1.has_previous %}
+                        <li><a href="?page={{ data1.previous_page_number }}"><button
+                                 class="btn {% if data1.number == 1 %}btn-primary{% else %}btn-outline-primary{% endif %}">&laquo;</button></a>
+                        </li>
+                        {% else %}
+                        <li class="disabled"><span><button
+                                 class="btn {% if data1.number == 1 %}btn-primary{% else %}btn-outline-primary{% endif %}">&laquo;</button></span>
+                        </li>
+                        {% endif %}
+                        {% for i in data1.paginator.page_range %}
+                        {% if data1.number == i %}
+                        <li class="active"><span><button class="btn btn-primary">{{ i }} <span
+                                    class="sr-only">(current)</span></button></span></li>
+                        {% else %}
+                        <li><a href="?page={{ i }}"><button class="btn btn-outline-primary">{{ i }}</button></a></li>
+                        {% endif %}
+                        {% endfor %}
+                        {% if data1.has_next %}
+                        <li><a href="?page={{ pro.next_page_number }}"><button
+                                 class="btn {% if data1.number == data1.paginator.num_pages %}btn-primary{% else %}btn-outline-primary{% endif %}">&raquo;</button></a>
+                        </li>
+                        {% else %}
+                        <li class="disabled"><span><button
+                                 class="btn {% if data1.number == data1.paginator.num_pages %}btn-primary{% else %}btn-outline-primary{% endif %}">&raquo;</button></span>
+                        </li>
+                        {% endif %}
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end row -->
+   <!-- Modal -->
+   <script>
+
+
+
+   </script>
+
+   <!-- Here we create this empty div for inserting modal -->
+   <div id="modal-div"></div>
+   <form method="POST" action="">
+      {% csrf_token %}
+      <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ganti Status</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <!-- first select populated with context variables -->
+                  <select id='first-select'>
+                     <option disabled="disabled" selected="selected">---Pilih Status---</option>
+                     <option value="Diterima">Diterima</option>
+                     <option value="Ditolak">Ditolak</option>
+                  </select>
+
+                  <!-- second select populated with response from ajax -->
+
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </form>
+</div>
+<!-- footer -->
+
+{% include 'dosen/includes/footer.html' %}
+</div>
+<!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% include 'dosen/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Skripsipedia</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% load static %}
+    <!-- Include CSS files -->
+    {% include 'dosen_matkul/includes/css.html' %}
+    <!-- Specific CSS goes HERE -->
+    {% block stylesheets %}
+    <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+    {% endblock stylesheets %}
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+
+    <style>
+        select.form-control:not([size]):not([multiple]) {
+            height: calc(3rem + 2px);
+        }
+    </style>
+</head>
+
+{% include 'dosen_matkul/includes/navigation.html' %}
+
+{% block content %}
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Input Jadwal Sempro</h2>
+                </div>
+            </div>
+        </div>
+        {% include 'message.html' %}
+        <!-- row -->
+      <div class="row column4 graph">
+        <!-- tab style 1 -->
+        <div class="col-md-6">
+           <div class="white_shd full margin_bottom_30">
+              <div class="full graph_head">
+                 <div class="heading1 margin_0">
+                    <h2>Tanggal Sempro</h2>
+                 </div>
+              </div>
+              <div class="full inner_elements">
+                 <div class="row">
+                    <div class="col-md-12">
+                       <div class="tab_style1">
+                          <div class="tabbar padding_infor_info">
+                             <div class="tab-content" id="nav-tabContent">
+                                <form method="POST" action="">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="tanggal">Pilih Tanggal</label>
+                                        <input id="datepicker" name="tanggal" placeholder="Pilih Tanggal" />
+                                     </div>
+                                   <br><button type="submit" class="btn btn-primary">Submit</button></br>
+                                </form>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <!-- tab style 2 -->
+        <div class="col-md-6">
+           <div class="white_shd full margin_bottom_30">
+              <div class="full graph_head">
+                 <div class="heading1 margin_0">
+                    <h2>Jam Sempro</h2>
+                 </div>
+              </div>
+              <div class="full inner_elements">
+                 <div class="row">
+                    <div class="col-md-12">
+                       <div class="tab_style2">
+                          <div class="tabbar padding_infor_info">
+                             <div class="tab-content" id="nav-tabContent_2">
+                                <form method="POST" action="">
+                                    {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="jam_mulai">Pilih Jam Mulai</label>
+                                    <input type="time" class="form-control" id="clockpicker" name="jam_mulai"
+                                        placeholder="Pilih Jam" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="jam_selesai">Pilih Jam Selesai</label>
+                                    <input type="time" class="form-control" id="clockpicker" name="jam_selesai"
+                                        placeholder="Pilih Jam" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">Simpan Jadwal</button>
+                            </form>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+        {% include 'dosen_matkul/includes/footer.html' %}
+    </div>
+    <!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% include 'mahasiswa/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

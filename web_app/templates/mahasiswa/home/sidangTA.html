@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Skripsipedia</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- Include CSS files -->
+   {% include 'mahasiswa/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+
+   {% endblock stylesheets %}
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+<style>
+   select.form-control:not([size]):not([multiple]) {
+      height: calc(3rem + 2px);
+   }
+</style>
+{% include 'mahasiswa/includes/navigation.html' %}
+
+
+
+{% block content %}
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Daftar Sidang TA</h2>
+            </div>
+         </div>
+      </div>
+      {% include 'message2.html' %}
+      <div class="row column1 graph margin_bottom_30">
+         <div class="col-md-10 col-lg-10">
+            <div class="white_shd full">
+               <div class="full graph_head">
+                  <div class="heading1 margin_0">
+
+                     <form method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-row">
+                           <div class="form-group col-md-6">
+                              <label for="nama">Nama</label>
+                              <input type="text" name="nama" value="{{user.profil_mahasiswa.nama}}" 
+                              class="form-control" placeholder="Masukkan Nama">
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="nim">NIM</label>
+                              <input type="text" name="nim" value="{{user.profil_mahasiswa.nim}}" 
+                              class="form-control" placeholder="Masukkan NIM">
+                           </div>
+                           <br>
+                           <br>
+
+                           <div class="form-group col-md-6">
+                              <label for="kelas">Kelas</label>
+                              <input type="text" name="kelas" value="{{user.user_kelas.kelas}}" 
+                              class="form-control" placeholder="Masukkan Kelas">
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="prodi">Prodi</label>
+                              <select name="prodi" class="form-control">
+                                 <option disabled="disabled" selected="selected">---Pilih Prodi---</option>
+                                 <option value="S1 Teknik Komputer">S1 Teknik Komputer</option>
+                              </select>
+                              </select>
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="pbb1">Pembimbing 1</label>
+                              <select name="pbb1" class="form-control">
+                                 <option disabled="disabled" selected="selected">---Pilih Pembimbing 1---</option>
+                                 {% for pbb1 in obj %}
+                                 <option>{{pbb1.kode_dosen}}</option>
+                                 {% endfor %}
+                              </select>
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="pbb2">Pembimbing 2</label>
+                              <select name="pbb2" class="form-control">
+                                 <option disabled="disabled" selected="selected">---Pilih Pembimbing 2---</option>
+                                 {% for pbb2 in obj %}
+                                 <option>{{pbb2.kode_dosen}}</option>
+                                 {% endfor %}
+                              </select>
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="hari_sidang">Pilih Hari Sidang</label>
+                              <select name="hari_sidang" class="form-control">
+                                 <option disabled="disabled" selected="selected">---Pilih Hari Sidang---</option>
+                                 <option value="Senin">Senin</option>
+                                 <option value="Selasa">Selasa</option>
+                                 <option value="Rabu">Rabu</option>
+                                 <option value="Kamis">Kamis</option>
+                                 <option value="Jumat">Jumat</option>
+                              </select>
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="waktu_sidang">Pilih Waktu Sidang</label>
+                              <select name="waktu_sidang" class="form-control">
+                                 <option disabled="disabled" selected="selected">---Pilih Waktu Sidang---</option>
+                                 <option value="08:30 - 10.30">Shift 1: 08:30 - 10.30</option>
+                                 <option value="10:30 - 12.30">Shift 2: 10:30 - 12.30</option>
+                                 <option value="12:30 - 14.30">Shift 3: 12:30 - 14.30</option>
+                                 <option value="14:30 - 16.30">Shift 4: 14:30 - 16.30</option>
+                              </select>
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="tak">TAK</label>
+                              <input type="text" name="tak" class="form-control" placeholder="Masukkan TAK">
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="eprt">EPRT</label>
+                              <input type="text" name="eprt" class="form-control" placeholder="Masukkan Nilai EPRT">
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="judul_indo">Judul Dalam Bahasa Indonesia</label>
+                              <input type="text" name="judul_indo" class="form-control" placeholder="Masukkan Judul">
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="judul_inggris">Judul Dalam Bahasa Inggris</label>
+                              <input type="text" name="judul_inggris" class="form-control" placeholder="Masukkan Judul">
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="email">Email Mahasiswa</label>
+                              <input type="text" name="email" class="form-control"
+                                 placeholder="Masukkan Email Mahasiswa">
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="whatsapp">Masukkan Kontak WA</label>
+                              <input type="text" name="whatsapp" class="form-control" placeholder="Masukkan Kontak WA">
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="persetujuan">Persetujuan Pembimbing</label>
+                              <select name="persetujuan" class="form-control">
+                                 <option disabled="disabled" selected="selected">---Pilih YA/TIDAK---</option>
+                                 <option value="YA">YA</option>
+                                 <option value="TIDAK">TIDAK</option>
+                              </select>
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="kelompok_keahlian">Laboratorium</label>
+                              <select name="kelompok_keahlian" class="form-control">
+                                 <option disabled="disabled" selected="selected">---Pilih Lab Judul TA---</option>
+                                 {% for lab in labs %}
+                                    <option>{{lab.nama}}</option>
+                                 {% endfor %}
+                              </select>
+                           </div>
+                        </div>
+
+                        <div class="card">
+                           <div class="card-header">
+                              BERKAS YANG HARUS DI UPLOAD BERUPA SATU FILE PDF
+                           </div>
+                           <div class="card-body">
+                              <blockquote class="blockquote mb-0">
+                                 <p>1. Print Screen Lulus Tingkat 3 <br>
+                                    2. Print Screen Bimbingan Online di Igracias yang telah di Approve Pembimbing 1
+                                    (Minimal 8 kali bimbingan) <br>
+                                    3. Print Screen SKPI acc BK dan LAC <br>
+                                    4. Sertifikat EPRT Min. 450 atau 3 kali Permakluman
+                                    (Sertakan surat pemakluman dan sertifikat) <br>
+                                    5. Form Biodata Ijazah <br>
+                                    6. Bukti Pengiriman Foto 4x6 sebanyak 4 buah melalui Ekspedisi <br>
+                                    7. Bukti Bayar Wisuda <br>
+                                    8. Fotocopy SK TA (SK TA yang masih aktif) <br>
+                                    9. Cover Judul, Lembar Orisinalitas, Abstrak <br>
+                                    Contoh file : https://bit.ly/persyaratanSidang</p>
+
+                              </blockquote>
+                           </div>
+                        </div>
+
+                        <div class="card">
+                           <div class="card-header">
+                              Pengumuman
+                           </div>
+                           <div class="card-body">
+                              <blockquote class="blockquote mb-0">
+                                 <p>Pengumuman dan contoh terkait sidang Tugas Akhir dapat di lihat di: <br>
+                                    Instagram:
+                                    <a
+                                       href="https://instagram.com/laa.fte?utm_medium=copy_link">https://instagram.com/laa.fte?utm_medium=copy_link</a>
+                                    <br>
+                                    <a href="Web: https://see.telkomuniversity.ac.id/">Web:
+                                       https://see.telkomuniversity.ac.id/</a>
+                                 </p>
+                              </blockquote>
+                           </div>
+                        </div>
+                        <br>
+
+
+                        <div class="form-group">
+                           <label for="berkas">Upload 9 Berkas Disatukan 1 File Format PDF</label>
+                           <input type="file" name="berkas" class="form-control" />
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+         {% include 'mahasiswa/includes/footer.html' %}
+      </div>
+      <!-- end dashboard inner -->
+   </div>
+</div>
+</div>
+{% include 'mahasiswa/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Skripsipedia</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- Include CSS files -->
+   {% include 'mahasiswa/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+
+   {% endblock stylesheets %}
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+{% include 'mahasiswa/includes/navigation.html' %}
+
+{% block content %}
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Revisi Tugas Akhir</h2>
+            </div>
+         </div>
+      </div>
+      {% include 'message2.html' %}
+      <!-- row -->
+      <!-- row -->
+      <div class="row column4 graph">
+         <!-- tab style 1 -->
+         <div class="col-md-6">
+            <div class="white_shd full margin_bottom_30">
+               <div class="full graph_head">
+                  <div class="heading1 margin_0">
+                     <h2>Form Upload Revisi</h2>
+                  </div>
+               </div>
+               <div class="full inner_elements">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="tab_style1">
+                           <div class="tabbar padding_infor_info">
+                              <div class="tab-content" id="nav-tabContent">
+                                 <form method="POST" action="" enctype="multipart/form-data">
+                                    {% csrf_token %}
+               
+                                    <div class="form-group">
+                                       <label class="form-label" for="nama"></label>
+                                       <input type="text" name="nama" value="{{user.profil_mahasiswa.nama}}"
+                                       class="form-control" placeholder="Nama" />
+                                    </div>
+               
+               
+               
+                                    <div class="form-group">
+                                       <label class="form-label" for="nim"></label>
+                                       <input type="text" name="nim" value="{{user.profil_mahasiswa.nim}}"
+                                       class="form-control" placeholder="NIM" />
+                                    </div>
+               
+               
+                                    <div class="form-group">
+                                       <label class="form-label" for="fakultas"></label>
+                                       <input type="text" name="fakultas" value="Fakultas Teknik Elektro"
+                                       class="form-control" placeholder="Fakultas" />
+                                    </div>
+               
+               
+                                    <div class="form-group">
+                                       <label class="form-label" for="prodi"></label>
+                                       <input type="text" name="prodi" value="S1 Teknik Komputer" 
+                                       class="form-control" placeholder="Prodi" />
+                                    </div>
+               
+                                    <div class="form-group">
+                                       <label for="revisi">Lembar Revisi</label>
+                                       <input type="file" class="form-control" name="revisi" />
+                                    </div>
+               
+                                    <div class="form-group">
+                                       <label for="lembar_ta">Buku TA</label>
+                                       <input type="file" class="form-control" name="lembar_ta" />
+                                    </div>
+               
+                                    <div class="form-group">
+                                       <label for="jurnal">Jurnal</label>
+                                       <input type="file" class="form-control" name="jurnal" />
+                                    </div>
+               
+                                    <br><button type="submit" class="btn btn-primary btn-rounded btn-block">SUBMIT</button></br>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- tab style 2 -->
+         <div class="col-md-6">
+            <div class="white_shd full margin_bottom_30">
+               <div class="full graph_head">
+                  <div class="heading1 margin_0">
+                     <h2>Keterangan Revisi</h2>
+                  </div>
+               </div>
+               <div class="full inner_elements">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="tab_style2">
+                           <div class="tabbar padding_infor_info">
+                              <div class="tab-content" id="nav-tabContent_2">
+                                 <h5>Judul TA :</h5>
+                                 <br>
+                                 <p>{{user.profil_mahasiswa.judul_ta}}</p>
+                                 <br>
+                                 <h5>Bagian yang harus direvisi :</h5>
+                                 <br>
+                                 <p>{{user.profil_mahasiswa.revisi}}</p>
+                                 <br>
+                                 <br>
+                                 <h5>Batas waktu upload revisi :</h5>
+                                 <br>
+                                 <p>{{user.profil_mahasiswa.batas_revisi}}</p>
+
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+      {% include 'mahasiswa/includes/footer.html' %}
+   </div>
+   <!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% include 'mahasiswa/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Skripsipedia</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- Include CSS files -->
+   {% include 'dosen/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+
+   {% endblock stylesheets %}
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+{% include 'dosen/includes/navigation.html' %}
+
+{% block content %}
+
+<!-- dashboard inner -->
+
+<!-- row -->
+<div class="row column1">
+   <div class="col-md-12">
+      <div class="white_shd full margin_bottom_30">
+         <div class="full graph_head">
+            <div class="heading1 margin_0">
+               <h2>Daftar Judul</h2>
+            </div>
+         </div>
+         {% include 'message.html' %}
+         <div class="full price_table padding_infor_info">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="table-responsive-sm">
+                     <table class="table table-striped projects">
+                        <thead class="thead-dark">
+                           <tr>
+                              <th style="width: 2%">No</th>
+                              <th style="width: 50%">Judul TA</th>
+                              <th>PBB 1</th>
+                              <th>PBB 2</th>
+                              <th>Pengusul</th>
+                              <th>Aksi</th>
+                           </tr>
+                        </thead>
+                        {% for proposal in proposals %}
+                        <tr>
+                           <td>{{ forloop.counter }}</td>
+                           <td>
+                              <a>{{proposal.judul}}</a>
+                           </td>
+                           <td>
+                              <a>{{proposal.pbb1}}</a>
+                           </td>
+                           <td>
+                              <a>{{proposal.pbb2}}</a>
+                           </td>
+                           <td>
+                              <a>{{proposal.pengusul}}</a>
+                           </td>
+                           <td>
+                              <a class="edit" href="{% url 'editProposal' proposal.id %}">
+                                 <button type="button" class="btn btn-primary">Edit</button>
+                              </a>
+                              <a class="hapus" href="{% url 'hapusProposal' proposal.id %}">
+                                 <button type="button" class="btn btn-danger">Hapus</button>
+                              </a>
+                           </td>
+                        </tr>
+                        {% endfor %}
+
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end row -->
+   <!-- Modal -->
+   <script>
+
+
+
+   </script>
+
+   <!-- Here we create this empty div for inserting modal -->
+   <div id="modal-div"></div>
+   <form method="POST" action="">
+      {% csrf_token %}
+      <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ganti Status</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body">
+                  <!-- first select populated with context variables -->
+                  <select id='first-select'>
+                     <option disabled="disabled" selected="selected">---Pilih Status---</option>
+                     <option value="Diterima">Diterima</option>
+                     <option value="Ditolak">Ditolak</option>
+                  </select>
+
+                  <!-- second select populated with response from ajax -->
+
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </form>
+</div>
+<!-- footer -->
+
+{% include 'dosen/includes/footer.html' %}
+</div>
+<!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% include 'dosen/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

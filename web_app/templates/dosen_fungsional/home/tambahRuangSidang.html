@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- Include CSS files -->
+   {% include 'dosen_fungsional/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+
+   {% endblock stylesheets %}
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+{% include 'dosen_fungsional/includes/navigation.html' %}
+
+
+
+{% block content %}
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Rekomendasi Proposal</h2>
+            </div>
+         </div>
+      </div>
+      {% include 'message.html' %}
+      <div class="row column1 graph margin_bottom_30">
+         <div class="col-md-10 col-lg-10">
+            <div class="white_shd full">
+               <div class="full graph_head">
+                  <div class="heading1 margin_0">
+                     <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="form-row">
+                           <div class="form-group">
+                              <label for="judul">Ruang Sidang</label>
+                              <input type="nama_ruang" name="nama_ruang" class="form-control"
+                                 placeholder="Masukkan Nama Ruang">
+                           </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+         {% include 'dosen_fungsional/includes/footer.html' %}
+      </div>
+      <!-- end dashboard inner -->
+   </div>
+</div>
+</div>
+{% include 'dosen_fungsional/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

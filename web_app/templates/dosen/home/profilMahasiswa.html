@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Skripsipedia</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- site icon -->
+   <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/png" />
+   <!-- Include CSS files -->
+   {% include 'dosen/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+   <!-- calendar file css -->
+   <link rel="stylesheet" href="{% static 'js/semantic.min.css' %}" />
+   {% endblock stylesheets %}
+
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+{% include 'dosen/includes/navigation.html' %}
+{% block content %}
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Detail</h2>
+            </div>
+         </div>
+      </div>
+      {% include 'message.html' %}
+      <div class="card w-75">
+         <div class="card-body">
+            <h5 class="card-title">Nama : {{obj.profil_mahasiswa.nama}}</h5>
+            <p>NIM : {{obj.profil_mahasiswa.nim}}</p>
+            <p>Email : {{obj.profil_mahasiswa.email}}</p>
+            <p>Kelas : {{obj.user_kelas.kelas}}</p>
+            <p>Bakat : {{obj.profil_mahasiswa.bakat}}</p>
+            <style>
+               a {
+                  color: blue;
+               }
+            </style>
+            <p class="file-nilai">Nilai Mahasiswa : <a href="{{obj.profil_mahasiswa.berkas_nilai.url}}">klik disini</a>
+               <br>
+               <br>
+               <a class="kembali" href="{% url 'daftarMahasiswa' %}">
+                  <button type="button" class="btn btn-success btn-xs">Kembali</button>
+               </a>
+         </div>
+      </div>
+      <div class="col-md-2"></div>
+   </div>
+   <!-- end row -->
+</div>
+{% include 'dosen/includes/footer.html' %}
+</div>
+<!-- end dashboard inner -->
+</div>
+</div>
+</div>
+</div>
+{% include 'dosen/includes/scripts.html' %}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<!-- calendar file css -->
+<script src="{% static 'js/semantic.min.js' %}"></script>
+{% endblock javascripts %}
+
+</body>
+{% endblock content %}
+
+</html>

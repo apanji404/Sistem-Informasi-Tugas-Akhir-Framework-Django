@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Dashboard</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- Include CSS files -->
+   {% include 'dosen_fungsional/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+
+   {% endblock stylesheets %}
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+
+
+{% include 'dosen_fungsional/includes/navigation.html' %}
+
+{% block content %}
+
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Dashboard</h2>
+            </div>
+         </div>
+      </div>
+      {% include 'message.html' %}
+      <div class="card" style="width: 70.8rem;">
+         <div class=" card text-center">
+            <div class="card-header">
+               <h5>Pemberitahuan</h5>
+            </div>
+            <div class="card-body">
+               <h5 class="card-text">Pendaftaran sidang bulan februari akan dilaksanakan pada 23-27 Januari
+               </h5>
+               <br>
+            </div>
+            <div class="card-footer text-muted">
+               LAA
+            </div>
+         </div>
+      </div>
+      <br>
+      <div class="row column1">
+         <div class="col-md-6 col-lg-3">
+            <div class="full counter_section margin_bottom_30 yellow_bg">
+               <div class="couter_icon">
+                  <div>
+                     <i class="fa fa-user"></i>
+                  </div>
+               </div>
+               <div class="counter_no">
+                  <div>
+                     <p class="total_no">{{user_count}}
+                     </p>
+                     <p class="head_couter">User</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-3">
+            <div class="full counter_section margin_bottom_30 yellow_bg">
+               <div class="couter_icon">
+                  <div>
+                     <i class="fa fa-user"></i>
+                  </div>
+               </div>
+               <div class="counter_no">
+                  <div>
+                     <p class="total_no">{{mhs_count}}
+                     </p>
+                     <p class="head_couter">Mahasiswa</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-3">
+            <div class="full counter_section margin_bottom_30 yellow_bg">
+               <div class="couter_icon">
+                  <div>
+                     <i class="fa fa-user"></i>
+                  </div>
+               </div>
+               <div class="counter_no">
+                  <div>
+                     <p class="total_no">{{pbb_count}}
+                     </p>
+                     <p class="head_couter">Pembimbing</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-3">
+            <div class="full counter_section margin_bottom_30 yellow_bg">
+               <div class="couter_icon">
+                  <div>
+                     <i class="fa fa-user"></i>
+                  </div>
+               </div>
+               <div class="counter_no">
+                  <div>
+                     <p class="total_no">{{sidang}}
+                     </p>
+                     <p class="head_couter">Sidang</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+
+{% include 'dosen_fungsional/includes/footer.html' %}
+</div>
+<!-- end dashboard inner -->
+</div>
+
+{% include 'dosen_fungsional/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

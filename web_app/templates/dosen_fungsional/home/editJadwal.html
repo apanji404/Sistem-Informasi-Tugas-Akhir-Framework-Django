@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Skripsipedia</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% load static %}
+    <!-- Include CSS files -->
+    {% include 'dosen_fungsional/includes/css.html' %}
+    <!-- Specific CSS goes HERE -->
+    {% block stylesheets %}
+
+    {% endblock stylesheets %}
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+{% include 'dosen_fungsional/includes/navigation.html' %}
+
+
+
+{% block content %}
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Edit Hasil GA</h2>
+                </div>
+            </div>
+        </div>
+        {% include 'message.html' %}
+        <div class="row column1 graph margin_bottom_30">
+            <div class="col-lg-10">
+                <div class="white_shd full">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <div class="form row">
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th>Nama</th>
+                                                <td>{{obj.daftar_sidang}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Pembimbing 1</th>
+                                                <td>{{date.daftar_sidang.pbb1}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Pembimbing 2</th>
+                                                <td>{{date.daftar_sidang.pbb2}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Penguji 1</th>
+                                                <td>{{penguji1.penguji1.kode_dosen}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Penguji 2</th>
+                                                <td>{{penguji2.penguji2.kode_dosen}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ruangan</th>
+                                                <td>{{obj.ruang}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Waktu Sidang</th>
+                                                <td>{{date.daftar_sidang.hari_sidang}},
+                                                    {{date.daftar_sidang.waktu_sidang}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        {{form.as_p}}
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'dosen_fungsional/includes/footer.html' %}
+    </div>
+    <!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% include 'dosen_fungsional/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

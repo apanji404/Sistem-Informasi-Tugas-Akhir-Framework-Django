@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Skripsipedia</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- Include CSS files -->
+   {% include 'mahasiswa/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+
+   {% endblock stylesheets %}
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+{% include 'mahasiswa/includes/navigation.html' %}
+
+{% block content %}
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Nilai Proposal</h2>
+            </div>
+         </div>
+      </div>
+      {% include 'message.html' %}
+      <div class="row column1 graph margin_bottom_30">
+         <div class="col-md-10 col-lg-10">
+            <div class="white_shd full">
+               <div class="full graph_head">
+                  <table class="table">
+                     <tbody>
+                        <tr>
+                           <th>Nilai CD 1</th>
+                           <td>{{user.profil_mahasiswa.CD_1}}</td>
+                        </tr>
+                        <tr>
+                           <th>Nilai CD 2</th>
+                           <td>{{user.profil_mahasiswa.CD_2}}</td>
+                        </tr>
+                        <tr>
+                           <th>Nilai CD 3</th>
+                           <td>{{user.profil_mahasiswa.CD_3}}</td>
+                        </tr>
+                        <tr>
+                           <th>Nilai Presentasi</th>
+                           <td>{{user.profil_mahasiswa.presentation}}</td>
+                        </tr>
+                        <tr>
+                           <th>Nilai Keaktifan</th>
+                           <td>{{user.profil_mahasiswa.individual_performance}}</td>
+                        </tr>
+                        <tr>
+                           <th>Total Nilai</th>
+                           <td>{{user.profil_mahasiswa.nilai_proposal}}</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end row -->
+</div>
+<!-- footer -->
+
+{% include 'mahasiswa/includes/footer.html' %}
+</div>
+<!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% include 'mahasiswa/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

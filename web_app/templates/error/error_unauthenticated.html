@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Skripsipedia</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      {% load static %}
+      <!-- Include CSS files -->
+      {% include 'mahasiswa/includes/css.html' %}
+      <!-- Specific CSS goes HERE -->
+      {% block stylesheets %}
+   
+      {% endblock stylesheets %}
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+
+   {% block content %}
+   <body class="inner_page error_404">
+      <div class="full_container">
+         <div class="container">
+            <div class="center verticle_center full_height">
+               <div class="error_page">
+                  <div class="center">
+                     <div class="error_icon">
+                        <img class="img-responsive" src="{% static 'images/layout_img/error.png' %}" alt="#">
+                     </div>
+                  </div>
+                  <br>
+                  <h3>AKSES DITOLAK !</h3>
+                  <P>ANDA MENCOBA MENGAKSES HALAMAN YANG TIDAK BOLEH ANDA AKSES</P>
+                  <div class="center"><a class="main_bt" href="javascript:history.go(-1)">Kembali</a></div>
+               </div>
+            </div>
+         </div>
+      </div>
+<!-- end dashboard inner -->
+{% endblock content %}
+      
+   </body>
+{% include 'mahasiswa/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}
+</html>

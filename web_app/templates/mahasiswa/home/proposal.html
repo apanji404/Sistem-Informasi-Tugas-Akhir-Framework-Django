@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Skripsipedia</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- Include CSS files -->
+   {% include 'mahasiswa/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+   <style>
+      .pagination {
+         display: flex;
+         justify-content: center;
+      }
+
+      .pagination .active>span {
+         background-color: #000000;
+         color: black;
+      }
+
+      .pagination button {
+         padding: 0.5em 1em;
+         margin: 0 0.25em;
+      }
+   </style>
+   {% endblock stylesheets %}
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+{% include 'mahasiswa/includes/navigation.html' %}
+
+{% block content %}
+
+<!-- dashboard inner -->
+
+<!-- row -->
+<div class="row column1">
+   <div class="col-md-13">
+      <div class="white_shd full margin_bottom_30">
+         <div class="full graph_head">
+            <div class="heading1 margin_0">
+               <h2>Daftar Judul</h2>
+            </div>
+         </div>
+         {% include 'message.html' %}
+         <div class="full price_table padding_infor_info">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="table-responsive-sm">
+                     <table class="table table-striped projects">
+                        <thead class="thead-dark">
+                           <tr>
+                              <th style="width: 2%">No</th>
+                              <th style="width: 40%">Judul TA</th>
+                              <th>Pembimbing 1</th>
+                              <th>Pembimbing 2</th>
+                              <th>Kuota Proposal</th>
+                              <th>Sisa Kuota</th>
+                              <th>Aksi</th>
+                           </tr>
+                        </thead>
+                        {% for proposal in proposals %}
+                        <tbody>
+                           <tr>
+                              <td>{{ forloop.counter }}</td>
+                              <td>
+                                 <a>{{proposal.judul}}</a>
+                              </td>
+                              <td>
+                                 <a>{{proposal.pbb1}}</a>
+                              </td>
+                              <td>
+                                 <a>{{proposal.pbb2}}</a>
+                              </td>
+                              <td>
+                                 <a>{{proposal.jml_mhs}}</a>
+                              </td>
+                              <td>
+                                    {{proposal.sisa_kuota}}
+                              <td>
+                                 <a class="detail" href="{% url 'detailProposal' proposal.id %}">
+                                    <button type="button" class="btn btn-success btn-xs">Lihat Detail</button>
+                                 </a>
+                              </td>
+                           </tr>
+                           {% endfor %}
+
+                        </tbody>
+                     </table>
+                     <br>
+
+                     <ul class="pagination">
+                        {% if proposals.has_previous %}
+                        <li><a href="?page={{ proposals.previous_page_number }}"><button
+                                 class="btn {% if proposals.number == 1 %}btn-primary{% else %}btn-outline-primary{% endif %}">&laquo;</button></a>
+                        </li>
+                        {% else %}
+                        <li class="disabled"><span><button
+                                 class="btn {% if proposals.number == 1 %}btn-primary{% else %}btn-outline-primary{% endif %}">&laquo;</button></span>
+                        </li>
+                        {% endif %}
+                        {% for i in proposals.paginator.page_range %}
+                        {% if proposals.number == i %}
+                        <li class="active"><span><button class="btn btn-primary">{{ i }} <span
+                                    class="sr-only">(current)</span></button></span></li>
+                        {% else %}
+                        <li><a href="?page={{ i }}"><button class="btn btn-outline-primary">{{ i }}</button></a></li>
+                        {% endif %}
+                        {% endfor %}
+                        {% if proposals.has_next %}
+                        <li><a href="?page={{ proposals.next_page_number }}"><button
+                                 class="btn {% if proposals.number == proposals.paginator.num_pages %}btn-primary{% else %}btn-outline-primary{% endif %}">&raquo;</button></a>
+                        </li>
+                        {% else %}
+                        <li class="disabled"><span><button
+                                 class="btn {% if proposals.number == proposals.paginator.num_pages %}btn-primary{% else %}btn-outline-primary{% endif %}">&raquo;</button></span>
+                        </li>
+                        {% endif %}
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end row -->
+</div>
+<!-- footer -->
+
+{% include 'mahasiswa/includes/footer.html' %}
+</div>
+<!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% include 'mahasiswa/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+   $('.datepicker').datepicker({
+      format: 'dd/mm/yyyy'
+   });
+</script>
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

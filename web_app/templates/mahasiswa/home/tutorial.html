@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Skripsipedia</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% load static %}
+    <!-- Include CSS files -->
+    {% include 'mahasiswa/includes/css.html' %}
+    <!-- Specific CSS goes HERE -->
+    {% block stylesheets %}
+
+    {% endblock stylesheets %}
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+
+
+{% include 'mahasiswa/includes/navigation.html' %}
+
+{% block content %}
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Tutorial</h2>
+                </div>
+            </div>
+        </div>
+        {% include 'message.html' %}
+
+        <div class="row column2 graph margin_bottom_30">
+            <div class="col-md-l2 col-lg-12">
+                <div class="white_shd full">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+
+
+                            <br>
+
+                            <div class="card" style="width: 67rem;">
+                                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhQUANZOumNBjeUKkj14i_fh1NfInHWa9t42GF_NdO6foE1NsIDG5PSYjOk9J0BHnN2o3xnDJocmjIB045rBAE4n5qEW1jR1E-aigQPcmgcwDXxrTeLz9QQK0fcOgA9fwosMaW1Krt3s9-4LOTSF3qKQ6LQc25LngSEx0dXQREXDzDFz0MNT5GqCgTp=s16000"
+                                    class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Tekan X untuk Loncat.</p>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="card" style="width: 67rem;">
+                                <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhQUANZOumNBjeUKkj14i_fh1NfInHWa9t42GF_NdO6foE1NsIDG5PSYjOk9J0BHnN2o3xnDJocmjIB045rBAE4n5qEW1jR1E-aigQPcmgcwDXxrTeLz9QQK0fcOgA9fwosMaW1Krt3s9-4LOTSF3qKQ6LQc25LngSEx0dXQREXDzDFz0MNT5GqCgTp=s16000"
+                                    class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">Tekan X untuk Loncat.</p>
+                                </div>
+                            </div>
+
+                            <br>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'mahasiswa/includes/footer.html' %}
+    </div>
+    <!-- end dashboard inner -->
+</div>
+
+{% include 'mahasiswa/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

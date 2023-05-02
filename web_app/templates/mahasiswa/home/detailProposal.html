@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Skripsipedia</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- site icon -->
+   <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/png" />
+   <!-- Include CSS files -->
+   {% include 'mahasiswa/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+   <!-- calendar file css -->
+   <link rel="stylesheet" href="{% static 'js/semantic.min.css' %}" />
+   {% endblock stylesheets %}
+
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+{% include 'mahasiswa/includes/navigation.html' %}
+{% block content %}
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Detail</h2>
+            </div>
+         </div>
+      </div>
+      {% include 'message2.html' %}
+      <form method="POST" action="">
+         {% csrf_token %}
+         <div class="card w-75">
+            <div class="card-body">
+               <h5 class="card-title">Judul : {{obj.judul}}</h5>
+               <p>Skill : {{obj.skill}}</p>
+               <p>Lab : {{obj.lab}}</p>
+               <p>Pembimbing 1 : {{obj.pbb1}}</p>
+               <p>Pembimbing 2 : {{obj.pbb2}}</p>
+               <p>Pengusul : {{obj.pengusul}}</p>
+               <p>Jumlah Mahasiswa : {{obj.jml_mhs}}</p>
+               <p>Penelitian Sebelumnya : {{obj.penelitian_sebelumnya}}</p>
+               {% if sisa_kuota > 0 %}
+                <p>Sisa Kuota : {{sisa_kuota}}</p>
+                <button type="submit" class="btn btn-primary">Daftar Proposal</button>
+               {% else %}
+                <p>Sisa Kuota : 0</p>
+                <button type="button" class="btn btn-secondary" disabled>Kuota Penuh</button>
+               {% endif %}
+            </div>
+         </div>
+         <div class="col-md-2"></div>
+      </form>
+   </div>
+   <!-- end row -->
+</div>
+{% include 'mahasiswa/includes/footer.html' %}
+</div>
+<!-- end dashboard inner -->
+</div>
+</div>
+</div>
+</div>
+{% include 'mahasiswa/includes/scripts.html' %}
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<!-- calendar file css -->
+<script src="{% static 'js/semantic.min.js' %}"></script>
+{% endblock javascripts %}
+
+</body>
+{% endblock content %}
+
+</html>

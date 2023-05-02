@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Skripsipedia</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- Include CSS files -->
+   {% include 'dosen_matkul/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+   <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+   {% endblock stylesheets %}
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+{% include 'dosen_matkul/includes/navigation.html' %}
+
+
+
+{% block content %}
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Data Waktu Sempro</h2>
+            </div>
+         </div>
+      </div>
+      {% include 'message.html' %}
+      <div class="row column1">
+         <div class="col-md-12">
+            <div class="white_shd full margin_bottom_30">
+               <div class="full graph_head">
+                  <div class="heading1 margin_0">
+                     <a class="detail" href="{% url 'inputJadwalSempro' %}">
+                        <button type="button" class="btn btn-success btn-xs">+ Tambah Jadwal Sempro</button>
+                     </a>
+                  </div>
+               </div>
+
+               <div class="full price_table padding_infor_info">
+                  <div class="row">
+                     <div class="col-lg-12">
+                        <div class="table-responsive-sm">
+                           <table class="table table-striped projects">
+                              <thead class="thead-dark">
+                                 <tr>
+                                    <th style="width: 2%">No</th>
+                                    <th>Jam Sempro</th>
+                                    <th style="width: 10%">Aksi</th>
+                                 </tr>
+                              </thead>
+                              {% for jam in obj2 %}
+                              <tbody>
+                                 <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>
+                                       <h6>{{jam.jam_mulai}} - {{jam.jam_selesai}}</h6>
+                                    </td>
+                                    <td>
+                                       <a class="detail" href="{% url 'hapusJamSempro' jam.id %}">
+                                          <button type="button" class="btn btn-danger btn-xs">Hapus</button>
+                                       </a>
+                                    </td>
+                                 </tr>
+                                 {% endfor %}
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="full price_table padding_infor_info">
+                  <div class="row">
+                     <div class="col-lg-12">
+                        <div class="table-responsive-sm">
+                           <table class="table table-striped projects">
+                              <thead class="thead-dark">
+                                 <tr>
+                                    <th style="width: 2%">No</th>
+                                    <th>Tanggal Sempro</th>
+                                    <th style="width: 10%">Aksi</th>
+                                 </tr>
+                              </thead>
+                              {% for jadwal in obj %}
+                              <tbody>
+                                 <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>
+                                       <h6>{{jadwal.tanggal}}</h6>
+                                    </td>
+                                    <td>
+                                       <a class="detail" href="{% url 'hapusJadwalSempro' jadwal.id %}">
+                                          <button type="button" class="btn btn-danger btn-xs">Hapus</button>
+                                       </a>
+                                    </td>
+                                 </tr>
+                                 {% endfor %}
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         {% include 'dosen_matkul/includes/footer.html' %}
+      </div>
+      <!-- end dashboard inner -->
+   </div>
+</div>
+</div>
+{% include 'dosen_matkul/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    $('#timepicker').timepicker({
+       showOtherMonths: true
+    });
+ </script>
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+ <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Dashboard</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- Include CSS files -->
+   {% include 'dosen_fungsional/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+
+   {% endblock stylesheets %}
+
+   {% include 'dosen_fungsional/includes/scripts.html' %}
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+{% include 'dosen_fungsional/includes/navigation.html' %}
+
+{% block content %}
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Generate Jadwal Sidang</h2>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% include 'message.html' %}
+   <div class="card w-90">
+      <div class="card-body" style="text-align: center;">
+         <h5 class="mb-4">Jumlah Pendaftar Sidang : {{obj}}</h5>
+         <button id="button" type="submit" class="btn btn-primary">Generate Jadwal</button>
+      </div>
+   </div>
+   {% include 'dosen_fungsional/includes/footer.html' %}
+</div>
+
+<script>
+   $(document).ready(function () {
+      $("#button").click(function () {
+         $.ajax({
+            url: 'generateJadwal',
+            type: 'POST',
+            data: {
+               'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (response) {
+               console.log(response);
+            }
+         });
+      });
+   });
+</script>
+<!-- end dashboard inner -->
+</div>
+</div>
+</div>
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

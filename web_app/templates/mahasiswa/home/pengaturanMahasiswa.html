@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Skripsipedia</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% load static %}
+    <!-- Include CSS files -->
+    {% include 'mahasiswa/includes/css.html' %}
+    <!-- Specific CSS goes HERE -->
+    {% block stylesheets %}
+    {% endblock stylesheets %}
+    <!--[if lt IE 9]>
+           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+           <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+           <![endif]-->
+</head>
+
+{% include 'mahasiswa/includes/navigation.html' %}
+
+{% block content %}
+<div class="midde_cont">
+    <div class="container-fluid">
+        <div class="row column_title">
+            <div class="col-md-12">
+                <div class="page_title">
+                    <h2>Edit Profile</h2>
+                </div>
+            </div>
+        </div>
+        {% include 'message.html' %}
+
+        <body>
+            <div class="container-xl px-4 mt-4">
+                <!-- Account page navigation-->
+                <nav class="nav nav-borders">
+                    <a class="nav-link active ms-0"
+                        href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details">Profil</a>
+                    <a class="nav-link" href="{% url 'ubahPasswordMahasiswa' %}">Password</a>
+                </nav>
+                <hr class="mt-0 mb-4">
+
+                <div class="col-xl-8">
+                    <!-- Account details card-->
+                    <div class="card mb-4">
+                        <div class="card-header">Detail Akun</div>
+                        <div class="card-body">
+                            <form method="POST" action="" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <!-- Form Group (username)-->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="nama">Nama Lengkap</label>
+                                    <input class="form-control" name="nama" type="text"
+                                        placeholder="Masukkan nama lengkap" value="{{user.profil_mahasiswa.nama}}">
+                                </div>
+                                <!-- Form Row-->
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="nim">NIM</label>
+                                        <input class="form-control" name="nim" type="number" placeholder="Masukkan NIM"
+                                            value="{{user.profil_mahasiswa.nim}}">
+                                    </div>
+                                    <!-- Form Group (last name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="email">Email</label>
+                                        <input class="form-control" name="email" type="email"
+                                            placeholder="Masukkan email" value="{{user.profil_mahasiswa.email}}">
+                                    </div>
+                                </div>
+
+                                <!-- Form Group (email address)-->
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="bakat">Bakat/Keahlian</label>
+                                    <input class="form-control" name="bakat" type="text"
+                                        placeholder="Masukkan bakat/keahlian" value="{{user.profil_mahasiswa.bakat}}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="berkas_nilai">Berkas Nilai</label>
+                                    <input type="file" class="form-control" name="berkas_nilai"
+                                        value="{{user.profil_mahasiswa.berkas_nilai}}" />
+                                </div>
+
+                                <!-- Save changes button-->
+                                <button class="btn btn-primary" name="submit">Simpan Perubahan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </body>
+
+
+</html>
+{% include 'mahasiswa/includes/footer.html' %}
+<!-- end dashboard inner -->
+{% endblock content %}
+</div>
+</div>
+</div>
+
+
+{% include 'mahasiswa/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}
+</body>
+
+</html>

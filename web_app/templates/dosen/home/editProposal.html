@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Skripsipedia</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- Include CSS files -->
+   {% include 'dosen/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+
+   {% endblock stylesheets %}
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+<style>
+   select.form-control:not([size]):not([multiple]) {
+      height: calc(3rem + 2px);
+   }
+</style>
+{% include 'dosen/includes/navigation.html' %}
+
+
+
+{% block content %}
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Detail Proposal</h2>
+            </div>
+         </div>
+      </div>
+      {% include 'message.html' %}
+      <div class="row column1 graph margin_bottom_30">
+         <div class="col-md-10 col-lg-10">
+            <div class="white_shd full">
+               <div class="full graph_head">
+                  <div class="heading1 margin_0">
+
+                     <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="form-row">
+                           <div class="form-group col-md-6 col-md-6">
+                              <label for="judul">Judul Tugas Akhir</label>
+                              <input type="text" name="judul" class="form-control" value="{{proposals.judul}}">
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="skill">Requirement/Skill yang Dibutuhkan</label>
+                              <input type="text" name="skill" class="form-control" value="{{proposals.skill}}">
+                           </div>
+                           <br>
+                           <br>
+
+                           <div class="form-group col-md-6">
+                              <label for="penelitian_sebelumnya">Penelitian Sebelumnya</label>
+                              <input type="text" name="penelitian_sebelumnya" class="form-control"
+                                 value="{{proposals.penelitian_sebelumnya}}">
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="pbb1">Pembimbing 1</label>
+                              <select name="pbb1" class="form-control">
+                                 <option value="{{proposals.pbb1}}" selected="selected">{{proposals.pbb1}}</option>
+                                 {% for profil_staff in data_sender %}
+                                 <option>{{profil_staff.kode_dosen}}</option>
+                                 {% endfor %}
+                              </select>
+                              </select>
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="pbb2">Pembimbing 2</label>
+                              <select name="pbb2" class="form-control">
+                                 <option value="{{proposals.pbb2}}" selected="selected">{{proposals.pbb2}}</option>
+                                 {% for profil_staff in data_sender %}
+                                 <option>{{profil_staff.kode_dosen}}</option>
+                                 {% endfor %}
+                              </select>
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="pengusul">Dosen Pengusul</label>
+                              <select name="pengusul" class="form-control">
+                                 <option value="{{proposals.pengusul}}" selected="selected">{{proposals.pengusul}}</option>
+                                 {% for profil_staff in data_sender %}
+                                 <option>{{profil_staff.kode_dosen}}</option>
+                                 {% endfor %}
+                              </select>
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="lab">Pilih Laboratorium</label>
+                              <select name="lab" class="form-control">
+                                 <option value="{{proposals.lab}}" selected="selected">{{proposals.lab}}</option>
+                                 {% for lab in labs %}
+                                 <option>{{lab.nama}}</option>
+                                 {% endfor %}
+                              </select>
+                           </div>
+
+                           <div class="form-group col-md-6">
+                              <label for="jml_mhs">Jumlah mahasiswa per topik</label>
+                              <select name="jml_mhs" class="form-control">
+                                 <option value="{{proposals.jml_mhs}}" selected="selected">{{proposals.jml_mhs}}</option>
+                                 <option value="1">1</option>
+                                 <option value="2">2</option>
+                                 <option value="3">3</option>
+                                 <option value="4">4</option>
+                                 <option value="5">5</option>
+                              </select>
+                           </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+         {% include 'dosen/includes/footer.html' %}
+      </div>
+      <!-- end dashboard inner -->
+   </div>
+</div>
+</div>
+{% include 'dosen/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

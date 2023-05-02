@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- Include CSS files -->
+   {% include 'dosen/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+   <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+   {% endblock stylesheets %}
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+
+   <style>
+      select.form-control:not([size]):not([multiple]) {
+         height: calc(3rem + 2px);
+      }
+   </style>
+</head>
+
+{% include 'dosen/includes/navigation.html' %}
+
+{% block content %}
+
+<!-- dashboard inner -->
+<div class="midde_cont">
+   <div class="container-fluid">
+      <div class="row column_title">
+         <div class="col-md-12">
+            <div class="page_title">
+               <h2>Seminar Proposal</h2>
+            </div>
+         </div>
+      </div>
+      {% include 'message.html' %}
+
+      <div class="row column2 graph margin_bottom_30">
+         <div class="col-md-l2 col-lg-12">
+            <div class="white_shd full">
+               <div class="full graph_head">
+                  <div class="heading1 margin_0">
+                     <form method="POST" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                           <label for="nama">Nama</label>
+                           <input type="text" name="nama" class="form-control" placeholder="Nama Lengkap">
+                        </div>
+
+                        <div class="form-group">
+                           <label for="nim">NIM</label>
+                           <input type="text" name="nim" class="form-control" placeholder="NIM">
+                        </div>
+
+                        <div class="form-group">
+                           <label for="kelas">Kelas</label>
+                           <select name="kelas" class="form-control">
+                              <option disabled="disabled" selected="selected">---Pilih Kelas---</option>
+                              {% for Kelas in kelas %}
+                              <option>{{Kelas.nama}}</option>
+                              {% endfor %}
+                           </select>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="tanggal">Pilih Tanggal </label>
+                           <input id="datepicker" name="tanggal" placeholder="Pilih Tanggal" />
+                        </div>
+
+                        <div class="form-group">
+                           <label for="jam">Pilih Jam </label>
+                           <input id="timepicker" name="jam" placeholder="Pilih Jam" />
+                        </div>
+
+                        <div class="form-group">
+                           <label for="pbb1">Pembimbing 1</label>
+                           <select name="pbb1" class="form-control">
+                              <option disabled="disabled" selected="selected">---Pilih Dosen---</option>
+                              {% for profil_staff in pbb %}
+                              <option>{{profil_staff.kode_dosen}}</option>
+                              {% endfor %}
+                           </select>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="pbb2">Pembimbing 2</label>
+                           <select name="pbb2" class="form-control">
+                              <option disabled="disabled" selected="selected">---Pilih Dosen---</option>
+                              {% for profil_staff in pbb %}
+                              <option>{{profil_staff.kode_dosen}}</option>
+                              {% endfor %}
+                           </select>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="judul">Judul Tugas Akhir</label>
+                           <input type="text" name="judul" class="form-control" placeholder="Masukkan Judul">
+                        </div>
+
+                        <div class="form-group">
+                           <label for="proposal">Upload File Proposal</label>
+                           <input type="file" name="proposal" class="form-control" />
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Request Jadwal</button>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      {% include 'mahasiswa/includes/footer.html' %}
+   </div>
+   <!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% include 'mahasiswa/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+   $('#timepicker').timepicker({
+      showOtherMonths: true
+   });
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>

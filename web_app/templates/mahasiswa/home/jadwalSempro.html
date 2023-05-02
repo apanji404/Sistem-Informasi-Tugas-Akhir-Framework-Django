@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Skripsipedia</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   {% load static %}
+   <!-- Include CSS files -->
+   {% include 'mahasiswa/includes/css.html' %}
+   <!-- Specific CSS goes HERE -->
+   {% block stylesheets %}
+   <style>
+      .pagination {
+         display: flex;
+         justify-content: center;
+      }
+
+      .pagination .active>span {
+         background-color: #000000;
+         color: black;
+      }
+
+      .pagination button {
+         padding: 0.5em 1em;
+         margin: 0 0.25em;
+      }
+   </style>
+   {% endblock stylesheets %}
+   <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+{% include 'mahasiswa/includes/navigation.html' %}
+
+{% block content %}
+
+<!-- dashboard inner -->
+
+<!-- row -->
+<div class="row column1">
+   <div class="col-md-13">
+      <div class="white_shd full margin_bottom_30">
+         <div class="full graph_head">
+            <div class="heading1 margin_0">
+               <h2>Jadwal Sempro</h2>
+            </div>
+         </div>
+         {% include 'message.html' %}
+         <div class="full price_table padding_infor_info">
+            <div class="row">
+               <div class="col-lg-12">
+                  <div class="table-responsive-sm">
+                     <table class="table table-striped projects">
+                        <thead class="thead-dark">
+                           <tr>
+                              <th>Nama</th>
+                              <th>Judul TA</th>
+                              <th>Kelas</th>
+                              <th>Tanggal</th>
+                              <th>Jam</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <a>{{user.sempro.nama}}</a>
+                              </td>
+                              <td>
+                                 <a>{{user.sempro.judul}}</a>
+                              </td>
+                              <td>
+                                 <a>{{user.user_kelas.kelas}}</a>
+                              </td>
+                              <td>
+                                 <a>{{user.sempro.tanggal}}</a>
+                              </td>
+                              <td>
+                                 <a>{{user.sempro.jam}}</a>
+                              </td>
+                           </tr>
+
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end row -->
+</div>
+<!-- footer -->
+
+{% include 'mahasiswa/includes/footer.html' %}
+</div>
+<!-- end dashboard inner -->
+</div>
+</div>
+</div>
+{% include 'mahasiswa/includes/scripts.html' %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}
+</body>
+{% endblock content %}
+
+</html>
